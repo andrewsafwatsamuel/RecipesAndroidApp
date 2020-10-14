@@ -5,10 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
-@Entity
-@Parcelize
 data class Recipe(
-        @PrimaryKey
         val id: String,
         val calories: String?,
         val carbos: String?,
@@ -20,4 +17,22 @@ data class Recipe(
         val proteins: String?,
         val thumb: String?,
         val time: String?
-) : Parcelable
+)
+
+
+@Parcelize
+@Entity
+data class InAppRecipe(
+        @PrimaryKey
+        val id: String,
+        val calories: Int?,
+        val carbos: Int?,
+        val description: String?,
+        val difficulty: Int?,
+        val fats: Int?,
+        val image: String?,
+        val name: String?,
+        val proteins: Int?,
+        val thumb: String?,
+        val time: String?
+):Parcelable
