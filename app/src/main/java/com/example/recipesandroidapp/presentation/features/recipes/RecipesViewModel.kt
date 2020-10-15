@@ -46,6 +46,4 @@ class RecipesViewModelProvider(private val isConnected: Boolean) : ViewModelProv
     override fun <T : ViewModel?> create(modelClass: Class<T>): T =
         if (modelClass.isAssignableFrom(RecipesViewModel::class.java)) RecipesViewModel(isConnected) as T
         else throw IllegalStateException("Bad ViewModel Class")
-
-
 }
