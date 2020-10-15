@@ -12,14 +12,8 @@ import kotlinx.coroutines.*
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
-    val job = Job()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        databaseInstance.dao.getRecipes().observe(this, Observer {
-            text.text = it.size.toString()
-            Timber.i(it.size.toString())
-        })
     }
 }
