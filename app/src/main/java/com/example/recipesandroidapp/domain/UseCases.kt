@@ -64,17 +64,18 @@ const val FAT = "fat"
 const val PROTEIN = "protein"
 const val CARPOS = "carpos"
 
-class SortRecipesUseCase() {
-    operator fun invoke(key: String, recipes: List<InAppRecipe>) = recipes
+class SortRecipesUseCase(private val repository: PreferenceRepository= preferenceRepository) {
+    operator fun invoke(recipes: List<InAppRecipe>) = recipes
         .asSequence()
-        .sortedBy { it.sort(key) }
+        .sortedBy { it.sort() }
         .toList()
 
-    private fun InAppRecipe.sort(key: String) = when (key) {
+    private fun InAppRecipe.sort() = when (repository.getSortKey()) {
         FAT -> fats
         PROTEIN -> proteins
         CARPOS -> carbos
-        else -> calories
+        CALORIES -> calories
+        else -> -1
     }
 
 }

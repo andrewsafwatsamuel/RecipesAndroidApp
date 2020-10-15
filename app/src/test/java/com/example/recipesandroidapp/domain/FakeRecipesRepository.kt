@@ -19,7 +19,6 @@ class FakeRecipesRepository(
     )
 ) : RecipesRepository {
 
-
     private val localLiveData = MutableLiveData<List<InAppRecipe>>()
 
     override suspend fun refreshRecipes(recipes: List<InAppRecipe>) {

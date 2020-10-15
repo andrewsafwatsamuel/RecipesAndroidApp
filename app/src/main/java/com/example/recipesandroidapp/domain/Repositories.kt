@@ -1,7 +1,9 @@
 package com.example.recipesandroidapp.domain
 
 import androidx.lifecycle.LiveData
+import com.example.recipesandroidapp.domain.dataSources.Preferences
 import com.example.recipesandroidapp.domain.dataSources.RecipesApi
+import com.example.recipesandroidapp.domain.dataSources.SORT_PREFERENCE
 import com.example.recipesandroidapp.domain.dataSources.databaseGateway.RecipesDao
 import com.example.recipesandroidapp.domain.dataSources.databaseGateway.databaseInstance
 import com.example.recipesandroidapp.domain.dataSources.recipesApi
@@ -39,4 +41,17 @@ class DefaultRecipesRepository(
     override fun getRecipes(): LiveData<List<InAppRecipe>> = dao.getRecipes()
 
     override fun searchRecipes(search: String): List<InAppRecipe> = dao.search("%$search%")
+}
+
+val preferenceRepository by lazy { DefaultPreferenceRepository() }
+
+interface PreferenceRepository{
+    fun setSortKey(sort:String)
+    fun getSortKey():String
+}
+
+class DefaultPreferenceRepository:PreferenceRepository{
+    override fun setSortKey(sort: String) =Preferences.putString(SORT_PREFERENCE,sort)
+
+    override fun getSortKey(): String =  Preferences.getString(SORT_PREFERENCE)
 }
