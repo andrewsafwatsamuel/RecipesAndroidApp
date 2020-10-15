@@ -3,7 +3,6 @@ package com.example.recipesandroidapp.domain
 import androidx.lifecycle.MutableLiveData
 import com.example.recipesandroidapp.entities.InAppRecipe
 import com.example.recipesandroidapp.entities.Recipe
-import org.jetbrains.annotations.TestOnly
 
 sealed class RefreshRecipesState
 object LoadingState : RefreshRecipesState()
@@ -49,3 +48,13 @@ class RefreshRecipesUseCase(
     private fun String.toIntValue() = takeUnless { it.isEmpty() }
         ?.run { split(" ")[0].toInt() } ?: 0
 }
+
+class SearchRecipesUseCase(
+    private val repository: RecipesRepository = RecipesRepositorySingleton.instance()
+){
+   operator fun invoke(searchKey:String,recipes: MutableLiveData<List<InAppRecipe>>)=repository
+       .takeIf { searchKey.isNotEmpty() }
+       ?.searchRecipes(searchKey)
+       ?.let { recipes.postValue(it) }
+}
+
