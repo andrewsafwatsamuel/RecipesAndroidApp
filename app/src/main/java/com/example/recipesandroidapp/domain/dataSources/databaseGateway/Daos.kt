@@ -19,6 +19,6 @@ interface RecipesDao {
     fun deleteRecipes()
 
     @Query("SELECT * FROM InAppRecipe WHERE name LIKE :name")
-    fun search(name: String): LiveData<List<InAppRecipe>>
+    fun search(name: String): List<InAppRecipe>
 
 }

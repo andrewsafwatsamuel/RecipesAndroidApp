@@ -22,21 +22,4 @@ class MainActivity : AppCompatActivity() {
             Timber.i(it.size.toString())
         })
     }
-
-    fun Recipe.toInAppRecipe() = InAppRecipe(
-            id,
-            calories?.toIntValue(),
-            carbos?.toIntValue(),
-            description,
-            difficulty,
-            fats?.toIntValue(),
-            image,
-            name,
-            proteins?.toIntValue(),
-            thumb,
-            time
-    )
-
-    fun String.toIntValue() = takeUnless { it.isEmpty() }
-            ?.run { split(" ")[0].toInt() } ?: 0
 }
