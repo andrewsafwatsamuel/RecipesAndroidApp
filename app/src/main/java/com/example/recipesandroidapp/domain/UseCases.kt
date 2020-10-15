@@ -31,7 +31,6 @@ class RefreshRecipesUseCase(
         .let { repository.refreshRecipes(it) }
 
     private fun Recipe.toInAppRecipe() = InAppRecipe(
-
         id,
         calories?.toIntValue(),
         carbos?.toIntValue(),
@@ -64,7 +63,7 @@ const val FAT = "fat"
 const val PROTEIN = "protein"
 const val CARPOS = "carpos"
 
-class SortRecipesUseCase(private val repository: PreferenceRepository= preferenceRepository) {
+class SortRecipesUseCase(val repository: PreferenceRepository= preferenceRepository) {
     operator fun invoke(recipes: List<InAppRecipe>) = recipes
         .asSequence()
         .sortedBy { it.sort() }

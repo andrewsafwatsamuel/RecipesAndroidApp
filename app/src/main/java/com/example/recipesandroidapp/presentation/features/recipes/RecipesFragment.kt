@@ -1,16 +1,21 @@
-package com.example.recipesandroidapp
+package com.example.recipesandroidapp.presentation.features.recipes
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_recipes.*
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.example.recipesandroidapp.R
 
 
 class RecipesFragment : Fragment() {
+
+    val viewModel by lazy {
+        ViewModelProvider(this, RecipesViewModelProvider(true))[RecipesViewModel::class.java]
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -18,7 +23,12 @@ class RecipesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        startObservers()
+    }
 
+    private fun startObservers()= with(viewModel){
+        statesLiveData.observe(viewLifecycleOwner) {  }
+        recipesLiveData.observe(viewLifecycleOwner) {  }
     }
 
 }
