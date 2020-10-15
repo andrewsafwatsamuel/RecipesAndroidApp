@@ -51,10 +51,30 @@ class RefreshRecipesUseCase(
 
 class SearchRecipesUseCase(
     private val repository: RecipesRepository = RecipesRepositorySingleton.instance()
-){
-   operator fun invoke(searchKey:String,recipes: MutableLiveData<List<InAppRecipe>>)=repository
-       .takeIf { searchKey.isNotEmpty() }
-       ?.searchRecipes(searchKey)
-       ?.let { recipes.postValue(it) }
+) {
+    operator fun invoke(searchKey: String, recipes: MutableLiveData<List<InAppRecipe>>) = repository
+        .takeIf { searchKey.isNotEmpty() }
+        ?.searchRecipes(searchKey)
+        ?.let { recipes.postValue(it) }
 }
 
+
+const val CALORIES = "calories"
+const val FAT = "fat"
+const val PROTEIN = "protein"
+const val CARPOS = "carpos"
+
+class SortRecipesUseCase() {
+    operator fun invoke(key: String, recipes: List<InAppRecipe>) = recipes
+        .asSequence()
+        .sortedBy { it.sort(key) }
+        .toList()
+
+    private fun InAppRecipe.sort(key: String) = when (key) {
+        FAT -> fats
+        PROTEIN -> proteins
+        CARPOS -> carbos
+        else -> calories
+    }
+
+}
