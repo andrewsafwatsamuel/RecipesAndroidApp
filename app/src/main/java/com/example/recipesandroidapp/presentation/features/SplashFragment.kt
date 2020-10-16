@@ -1,12 +1,12 @@
-package com.example.recipesandroidapp
+package com.example.recipesandroidapp.presentation.features
 
 import android.os.Bundle
-import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.example.recipesandroidapp.R
 import java.util.*
 
 class SplashFragment : Fragment() {

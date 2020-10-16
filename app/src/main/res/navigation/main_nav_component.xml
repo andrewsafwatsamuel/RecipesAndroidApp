@@ -9,10 +9,14 @@
         android:id="@+id/recipesFragment"
         android:name="com.example.recipesandroidapp.presentation.features.recipes.RecipesFragment"
         android:label="fragment_recipes"
-        tools:layout="@layout/fragment_recipes" />
+        tools:layout="@layout/fragment_recipes" >
+        <action
+            android:id="@+id/action_recipesFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.recipesandroidapp.SplashFragment"
+        android:name="com.example.recipesandroidapp.presentation.features.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -20,5 +24,14 @@
             app:destination="@id/recipesFragment"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.recipesandroidapp.presentation.features.details.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" >
+        <argument
+            android:name="recipe"
+            app:argType="com.example.recipesandroidapp.entities.InAppRecipe" />
     </fragment>
 </navigation>

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.recipesandroidapp.R
 import com.example.recipesandroidapp.domain.*
 import com.example.recipesandroidapp.entities.InAppRecipe
@@ -21,7 +22,7 @@ class RecipesFragment : Fragment() {
         ViewModelProvider(this, RecipesViewModelProvider(requireContext().checkConnectivity()))[RecipesViewModel::class.java]
     }
 
-    private val recipesAdapter by lazy { RecipesAdapter { } }
+    private val recipesAdapter by lazy { RecipesAdapter { navigateToDetails(it) } }
 
     private val sortingDialog by lazy { SortingDialog() }
 
@@ -81,5 +82,7 @@ class RecipesFragment : Fragment() {
         error_cardView.show()
         error_textView.text = message
     }
-
+    private fun navigateToDetails(recipe:InAppRecipe)=RecipesFragmentDirections
+        .actionRecipesFragmentToDetailsFragment(recipe)
+        .let { findNavController().navigate(it) }
 }

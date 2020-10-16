@@ -32,6 +32,7 @@ class RefreshRecipesUseCase(
 
     private fun Recipe.toInAppRecipe() = InAppRecipe(
         id,
+        headline,
         calories?.toIntValue(),
         carbos?.toIntValue(),
         description,

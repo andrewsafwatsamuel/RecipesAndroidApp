@@ -7,7 +7,9 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.*
 import android.os.Build
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
@@ -112,3 +114,7 @@ class ConnectivityListener(private val context: Context) : LiveData<Boolean>() {
 fun Context.checkConnectivity() =
     (getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).activeNetworkInfo?.isConnected
         ?: false
+
+fun ViewGroup.inflateView(layout:Int): View =LayoutInflater
+    .from(context)
+    .inflate(layout,this,false)
