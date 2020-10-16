@@ -22,7 +22,7 @@ object RecipesRepositorySingleton {
 interface RecipesRepository {
     suspend fun refreshRecipes(recipes: List<InAppRecipe>)
     suspend fun getRemoteRecipes(): Response<List<Recipe>>
-    fun getRecipes(): LiveData<List<InAppRecipe>>
+    fun getRecipes(): List<InAppRecipe>
     fun searchRecipes(search: String): List<InAppRecipe>
 }
 
@@ -38,7 +38,7 @@ class DefaultRecipesRepository(
 
     override suspend fun getRemoteRecipes(): Response<List<Recipe>> = api.retrieveRecipes()
 
-    override fun getRecipes(): LiveData<List<InAppRecipe>> = dao.getRecipes()
+    override fun getRecipes(): List<InAppRecipe> = dao.getRecipes()
 
     override fun searchRecipes(search: String): List<InAppRecipe> = dao.search("%$search%")
 }

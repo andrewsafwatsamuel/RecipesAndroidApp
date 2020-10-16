@@ -15,7 +15,7 @@ import java.lang.IllegalStateException
 
 class RecipesViewModel(
     isConnected: Boolean,
-    val recipesLiveData: LiveData<List<InAppRecipe>> = RecipesRepositorySingleton.instance().getRecipes(),
+    val recipesLiveData: MutableLiveData<List<InAppRecipe>> = MutableLiveData(),
     val statesLiveData: MutableLiveData<RefreshRecipesState> = MutableLiveData(),
     private val refreshRecipesUseCase: RefreshRecipesUseCase = RefreshRecipesUseCase(),
     private val sortRecipesUseCase: SortRecipesUseCase = SortRecipesUseCase(),
@@ -29,17 +29,19 @@ class RecipesViewModel(
 
     fun sortRecipes(recipes: List<InAppRecipe>) = sortRecipesUseCase(recipes)
 
-    fun setSorting(key:String)=sortRecipesUseCase.repository.setSortKey(key);
-
     fun refreshRecipes(
         isConnected: Boolean,
         scope: CoroutineScope = CoroutineScope(recipesJob + Dispatchers.IO)
     ) = scope.launch {
         try {
             refreshRecipesUseCase.invoke(isConnected, statesLiveData)
+            RecipesRepositorySingleton.instance().getRecipes().also { recipesLiveData.postValue(it) }
         } catch (e: Exception) {
             statesLiveData.postValue(ErrorState(e.message ?: "Un Known Error"))
         }
+    }
+    fun setRecipes(list: List<InAppRecipe>){
+        recipesLiveData.value = list
     }
 }
 

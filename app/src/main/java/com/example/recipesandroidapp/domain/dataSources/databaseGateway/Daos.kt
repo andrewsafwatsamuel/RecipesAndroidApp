@@ -10,7 +10,7 @@ import com.example.recipesandroidapp.entities.InAppRecipe
 @Dao
 interface RecipesDao {
     @Query("SELECT * FROM InAppRecipe")
-    fun getRecipes(): LiveData<List<InAppRecipe>>
+    fun getRecipes(): List<InAppRecipe>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertRecipes(recipes: List<InAppRecipe>)

@@ -49,7 +49,9 @@ class RecipesFragment : Fragment() {
             empty_view.visibility = if (it.isNullOrEmpty()) View.VISIBLE else View.GONE
             recipesAdapter.submitList(sortRecipes(it))
         }
-
+        sortingDialog.keyLiveData.observe(viewLifecycleOwner) {
+            setRecipes(sortRecipes((recipesLiveData.value ?: listOf())))
+        }
     }
 
     private fun drawStates(state: RefreshRecipesState) = when (state) {
