@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.MutableLiveData
 import com.example.recipesandroidapp.R
 import com.example.recipesandroidapp.domain.*
 import kotlinx.android.synthetic.main.layout_sorting.*
@@ -14,6 +15,7 @@ import kotlinx.android.synthetic.main.layout_sorting.*
 class SortingDialog : DialogFragment() {
 
     private val repository by lazy { preferenceRepository }
+     val keyLiveData by lazy { MutableLiveData<String>() }
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -40,9 +42,10 @@ class SortingDialog : DialogFragment() {
     }
 
     private fun View.onClicked(value:String,clicked: () -> Unit) = setOnClickListener {
+        repository.setSortKey(value)
+        keyLiveData.value = value
         clicked()
         dismiss()
-        repository.setSortKey(value)
     }
 
 

@@ -12,8 +12,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.example.recipesandroidapp.entities.InAppRecipe
+import com.example.recipesandroidapp.presentation.features.recipes.RecipesFragmentDirections
 
 fun ImageView.loadPhoto(url: String?) = Glide
     .with(context)
@@ -118,3 +122,7 @@ fun Context.checkConnectivity() =
 fun ViewGroup.inflateView(layout:Int): View =LayoutInflater
     .from(context)
     .inflate(layout,this,false)
+
+fun Fragment.navigateToDetails(recipe: InAppRecipe)= RecipesFragmentDirections
+        .actionRecipesFragmentToDetailsFragment(recipe)
+        .let { findNavController().navigate(it) }

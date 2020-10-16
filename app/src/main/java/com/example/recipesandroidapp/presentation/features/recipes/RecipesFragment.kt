@@ -13,7 +13,6 @@ import com.example.recipesandroidapp.entities.InAppRecipe
 import com.example.recipesandroidapp.presentation.*
 import com.example.recipesandroidapp.presentation.subFeatures.SortingDialog
 import kotlinx.android.synthetic.main.fragment_recipes.*
-import timber.log.Timber
 
 
 class RecipesFragment : Fragment() {
@@ -41,6 +40,7 @@ class RecipesFragment : Fragment() {
             recipes_swipeRefresh.isRefreshing = false
         }
         startObservers()
+        search_TextView.setOnClickListener { findNavController().navigate(R.id.action_recipesFragment_to_searchFragment) }
     }
 
     private fun startObservers() = with(viewModel) {
@@ -60,7 +60,7 @@ class RecipesFragment : Fragment() {
 
     private fun onLoading() {
         sorting_cardView.disable()
-        cardView2.disable()
+        search_cardView.disable()
         recipes_recycler_view.hide()
         recipes_progressBar.show()
         error_cardView.hide()
@@ -69,20 +69,17 @@ class RecipesFragment : Fragment() {
 
     private fun onSuccess() {
         sorting_cardView.enable()
-        cardView2.enable()
+        search_cardView.enable()
         recipes_recycler_view.show()
         recipes_progressBar.hide()
         error_cardView.hide()
     }
     private fun onError(message: String) {
         sorting_cardView.enable()
-        cardView2.enable()
+        search_cardView.enable()
         recipes_recycler_view.show()
         recipes_progressBar.hide()
         error_cardView.show()
         error_textView.text = message
     }
-    private fun navigateToDetails(recipe:InAppRecipe)=RecipesFragmentDirections
-        .actionRecipesFragmentToDetailsFragment(recipe)
-        .let { findNavController().navigate(it) }
 }
