@@ -17,5 +17,5 @@ object Preferences {
         .putString(key, value)
         .apply()
 
-    fun getString(key: String)= preferences().getString(key,"") ?:""
+    fun getString(key: String)= preferences().getString(key,null)
 }

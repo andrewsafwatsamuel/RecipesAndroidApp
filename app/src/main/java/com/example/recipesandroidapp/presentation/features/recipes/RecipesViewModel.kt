@@ -29,6 +29,8 @@ class RecipesViewModel(
 
     fun sortRecipes(recipes: List<InAppRecipe>) = sortRecipesUseCase(recipes)
 
+    fun setSorting(key:String)=sortRecipesUseCase.repository.setSortKey(key);
+
     fun refreshRecipes(
         isConnected: Boolean,
         scope: CoroutineScope = CoroutineScope(recipesJob + Dispatchers.IO)

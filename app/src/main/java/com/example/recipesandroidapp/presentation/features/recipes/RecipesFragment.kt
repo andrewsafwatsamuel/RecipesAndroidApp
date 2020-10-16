@@ -7,24 +7,23 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.recipesandroidapp.R
-import com.example.recipesandroidapp.domain.ErrorState
-import com.example.recipesandroidapp.domain.LoadingState
-import com.example.recipesandroidapp.domain.RefreshRecipesState
-import com.example.recipesandroidapp.domain.SuccessState
-import com.example.recipesandroidapp.presentation.disable
-import com.example.recipesandroidapp.presentation.enable
-import com.example.recipesandroidapp.presentation.hide
-import com.example.recipesandroidapp.presentation.show
+import com.example.recipesandroidapp.domain.*
+import com.example.recipesandroidapp.entities.InAppRecipe
+import com.example.recipesandroidapp.presentation.*
+import com.example.recipesandroidapp.presentation.subFeatures.SortingDialog
 import kotlinx.android.synthetic.main.fragment_recipes.*
+import timber.log.Timber
 
 
 class RecipesFragment : Fragment() {
 
     private val viewModel by lazy {
-        ViewModelProvider(this, RecipesViewModelProvider(true))[RecipesViewModel::class.java]
+        ViewModelProvider(this, RecipesViewModelProvider(requireContext().checkConnectivity()))[RecipesViewModel::class.java]
     }
 
     private val recipesAdapter by lazy { RecipesAdapter { } }
+
+    private val sortingDialog by lazy { SortingDialog() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,10 +32,11 @@ class RecipesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        sorting_cardView.setOnClickListener { sortingDialog.show(childFragmentManager,"") }
         recipes_recycler_view.adapter = recipesAdapter
-        retry_button.setOnClickListener { viewModel.refreshRecipes(true) }
+        retry_button.setOnClickListener { viewModel.refreshRecipes(requireContext().checkConnectivity()) }
         recipes_swipeRefresh.setOnRefreshListener {
-            viewModel.refreshRecipes(true)
+            viewModel.refreshRecipes(requireContext().checkConnectivity())
             recipes_swipeRefresh.isRefreshing = false
         }
         startObservers()
@@ -48,6 +48,7 @@ class RecipesFragment : Fragment() {
             empty_view.visibility = if (it.isNullOrEmpty()) View.VISIBLE else View.GONE
             recipesAdapter.submitList(sortRecipes(it))
         }
+
     }
 
     private fun drawStates(state: RefreshRecipesState) = when (state) {
@@ -57,8 +58,8 @@ class RecipesFragment : Fragment() {
     }
 
     private fun onLoading() {
-        sort_imageView.disable()
-        search_TextView.disable()
+        sorting_cardView.disable()
+        cardView2.disable()
         recipes_recycler_view.hide()
         recipes_progressBar.show()
         error_cardView.hide()
@@ -66,15 +67,15 @@ class RecipesFragment : Fragment() {
     }
 
     private fun onSuccess() {
-        sort_imageView.enable()
-        search_TextView.enable()
+        sorting_cardView.enable()
+        cardView2.enable()
         recipes_recycler_view.show()
         recipes_progressBar.hide()
         error_cardView.hide()
     }
     private fun onError(message: String) {
-        sort_imageView.enable()
-        search_TextView.enable()
+        sorting_cardView.enable()
+        cardView2.enable()
         recipes_recycler_view.show()
         recipes_progressBar.hide()
         error_cardView.show()

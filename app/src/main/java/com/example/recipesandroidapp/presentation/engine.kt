@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.*
-import android.net.wifi.p2p.WifiP2pManager
 import android.os.Build
 import android.view.View
 import android.widget.ImageView
@@ -65,7 +64,7 @@ class ConnectivityListener(private val context: Context) : LiveData<Boolean>() {
         super.onInactive()
         when {
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP -> connectivityManager.unregisterNetworkCallback(
-                connectivityManagerCallback()
+                callbackManager
             )
             else -> context.unregisterReceiver(networkReceiver)
         }
@@ -109,4 +108,7 @@ class ConnectivityListener(private val context: Context) : LiveData<Boolean>() {
     }
 }
 
-
+@Suppress("DEPRECATION")
+fun Context.checkConnectivity() =
+    (getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).activeNetworkInfo?.isConnected
+        ?: false

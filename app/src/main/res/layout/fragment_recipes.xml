@@ -16,7 +16,7 @@
             android:layout_height="match_parent">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardView"
+                android:id="@+id/sorting_cardView"
                 style="@style/ripple_style"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -49,7 +49,7 @@
                 android:layout_marginRight="@dimen/_8sdp"
                 app:cardElevation="6dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/cardView"
+                app:layout_constraintStart_toEndOf="@+id/sorting_cardView"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView

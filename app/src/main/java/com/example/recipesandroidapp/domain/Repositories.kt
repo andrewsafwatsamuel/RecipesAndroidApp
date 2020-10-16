@@ -53,5 +53,5 @@ interface PreferenceRepository{
 class DefaultPreferenceRepository:PreferenceRepository{
     override fun setSortKey(sort: String) =Preferences.putString(SORT_PREFERENCE,sort)
 
-    override fun getSortKey(): String =  Preferences.getString(SORT_PREFERENCE)
+    override fun getSortKey(): String =  Preferences.getString(SORT_PREFERENCE)?:"None"
 }

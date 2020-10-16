@@ -6,4 +6,9 @@
     <string name="filter_results">filter results</string>
     <string name="searchrecipe">Search Recipe</string>
     <string name="retry">retry</string>
+    <string name="none">None</string>
+    <string name="calories">Calories</string>
+    <string name="proteins">Proteins</string>
+    <string name="carbos">Carbos</string>
+    <string name="fats">Fats</string>
 </resources>
