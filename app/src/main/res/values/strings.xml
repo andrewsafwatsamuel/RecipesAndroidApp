@@ -11,4 +11,5 @@
     <string name="proteins">Proteins</string>
     <string name="carbos">Carbos</string>
     <string name="fats">Fats</string>
+    <string name="nutritional_facts">Nutritional Facts</string>
 </resources>

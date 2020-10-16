@@ -7,6 +7,7 @@ import kotlinx.android.parcel.Parcelize
 
 data class Recipe(
         val id: String,
+        val headline: String?,
         val calories: String?,
         val carbos: String?,
         val description: String?,
@@ -25,6 +26,7 @@ data class Recipe(
 data class InAppRecipe(
         @PrimaryKey
         val id: String,
+        val headline:String?,
         val calories: Int?,
         val carbos: Int?,
         val description: String?,
@@ -36,3 +38,9 @@ data class InAppRecipe(
         val thumb: String?,
         val time: String?
 ):Parcelable
+
+data class NutritionalFactHelper(
+        val title:String?,
+        val value:Int?,
+        val unit:String?
+)
