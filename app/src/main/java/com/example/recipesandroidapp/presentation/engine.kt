@@ -122,7 +122,3 @@ fun Context.checkConnectivity() =
 fun ViewGroup.inflateView(layout:Int): View =LayoutInflater
     .from(context)
     .inflate(layout,this,false)
-
-fun Fragment.navigateToDetails(recipe: InAppRecipe)= RecipesFragmentDirections
-        .actionRecipesFragmentToDetailsFragment(recipe)
-        .let { findNavController().navigate(it) }

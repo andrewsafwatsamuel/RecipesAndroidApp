@@ -10,10 +10,9 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.recipesandroidapp.R
+import com.example.recipesandroidapp.entities.InAppRecipe
 import com.example.recipesandroidapp.presentation.features.recipes.RecipesAdapter
-import com.example.recipesandroidapp.presentation.navigateToDetails
 import com.example.recipesandroidapp.presentation.subFeatures.SortingDialog
-import kotlinx.android.synthetic.main.fragment_recipes.*
 import kotlinx.android.synthetic.main.fragment_search.*
 
 class SearchFragment : Fragment() {
@@ -53,10 +52,14 @@ class SearchFragment : Fragment() {
         sortDialog.keyLiveData.observe(viewLifecycleOwner) {
             setRecipes(sortRecipesUseCase((recipesLiveData.value ?: listOf())))
         }
-        recipesLiveData.observe(viewLifecycleOwner){
+        recipesLiveData.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
     }
+
+    private fun navigateToDetails(recipe: InAppRecipe) = SearchFragmentDirections
+            .actionGlobalDetailsFragment(recipe)
+            .let { findNavController().navigate(it) }
 
     override fun onDestroyView() {
         super.onDestroyView()

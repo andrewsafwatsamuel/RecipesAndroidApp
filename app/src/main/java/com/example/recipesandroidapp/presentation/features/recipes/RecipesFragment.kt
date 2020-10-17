@@ -84,4 +84,8 @@ class RecipesFragment : Fragment() {
         error_cardView.show()
         error_textView.text = message
     }
+
+    private fun navigateToDetails(recipe: InAppRecipe)= RecipesFragmentDirections
+            .actionGlobalDetailsFragment(recipe)
+            .let { findNavController().navigate(it) }
 }
