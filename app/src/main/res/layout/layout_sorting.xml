@@ -1,66 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/_16sdp"
-    android:paddingStart="@dimen/_16sdp"
-    android:paddingRight="@dimen/_16sdp"
-    android:paddingEnd="@dimen/_16sdp"
     android:background="@color/white">
 
-    <TextView
-        android:id="@+id/non_textView"
-        style="@style/ripple_style.sorting"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:background="@drawable/selected_sorting_text_background"
-        android:text="@string/none"
-        app:layout_constraintBottom_toTopOf="@+id/calories_textView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/sorting_recycler"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="@+id/width_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <TextView
-        android:id="@+id/calories_textView"
-        style="@style/ripple_style.sorting"
-        android:text="@string/calories"
-        app:layout_constraintBottom_toTopOf="@+id/proteins_textView"
-        app:layout_constraintEnd_toEndOf="@+id/non_textView"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/non_textView"
-        app:layout_constraintTop_toBottomOf="@+id/non_textView" />
-
-    <TextView
-        android:id="@+id/proteins_textView"
-        style="@style/ripple_style.sorting"
-        android:text="@string/proteins"
-        app:layout_constraintBottom_toTopOf="@+id/carbos_textView"
-        app:layout_constraintEnd_toEndOf="@+id/calories_textView"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/calories_textView"
-        app:layout_constraintTop_toBottomOf="@+id/calories_textView" />
-
-    <TextView
-        android:id="@+id/carbos_textView"
-        style="@style/ripple_style.sorting"
-        android:text="@string/carbos"
-        app:layout_constraintBottom_toTopOf="@+id/fats_textView"
-        app:layout_constraintEnd_toEndOf="@+id/proteins_textView"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/proteins_textView"
-        app:layout_constraintTop_toBottomOf="@+id/proteins_textView" />
-
-    <TextView
-        android:id="@+id/fats_textView"
-        style="@style/ripple_style.sorting"
-        android:text="@string/fats"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/carbos_textView"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/carbos_textView"
-        app:layout_constraintTop_toBottomOf="@+id/carbos_textView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/width_view"

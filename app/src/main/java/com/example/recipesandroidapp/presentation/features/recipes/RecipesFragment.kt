@@ -12,7 +12,7 @@ import com.example.recipesandroidapp.domain.*
 import com.example.recipesandroidapp.entities.InAppRecipe
 import com.example.recipesandroidapp.presentation.*
 import com.example.recipesandroidapp.presentation.subFeatures.RecipesAdapter
-import com.example.recipesandroidapp.presentation.subFeatures.SortingDialog
+import com.example.recipesandroidapp.presentation.subFeatures.sorting.SortingDialog
 import kotlinx.android.synthetic.main.fragment_recipes.*
 
 
