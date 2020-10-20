@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.recipesandroidapp.R
 import com.example.recipesandroidapp.entities.InAppRecipe
 import com.example.recipesandroidapp.presentation.subFeatures.RecipesAdapter
-import com.example.recipesandroidapp.presentation.subFeatures.SortingDialog
+import com.example.recipesandroidapp.presentation.subFeatures.sorting.SortingDialog
 import kotlinx.android.synthetic.main.fragment_search.*
 
 class SearchFragment : Fragment() {

@@ -59,10 +59,10 @@ class SearchRecipesUseCase(
 }
 
 
-const val CALORIES = "calories"
-const val FAT = "fat"
-const val PROTEIN = "protein"
-const val CARPOS = "carpos"
+const val CALORIES = "Calories"
+const val FAT = "Fats"
+const val PROTEIN = "Proteins"
+const val CARBOS = "Carbos"
 
 class SortRecipesUseCase(val repository: PreferenceRepository= preferenceRepository) {
     operator fun invoke(recipes: List<InAppRecipe>) = recipes
@@ -73,7 +73,7 @@ class SortRecipesUseCase(val repository: PreferenceRepository= preferenceReposit
     private fun InAppRecipe.sort() = when (repository.getSortKey()) {
         FAT -> fats
         PROTEIN -> proteins
-        CARPOS -> carbos
+        CARBOS -> carbos
         CALORIES -> calories
         else -> -1
     }

@@ -10,7 +10,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.recipesandroidapp.R
 import com.example.recipesandroidapp.domain.CALORIES
-import com.example.recipesandroidapp.domain.CARPOS
+import com.example.recipesandroidapp.domain.CARBOS
 import com.example.recipesandroidapp.domain.FAT
 import com.example.recipesandroidapp.domain.PROTEIN
 import com.example.recipesandroidapp.entities.NutritionalFactHelper
@@ -25,7 +25,7 @@ class DetailsFragment : Fragment() {
             listOf(
                 NutritionalFactHelper(CALORIES, recipe.calories, "kcal"),
                 NutritionalFactHelper(PROTEIN, recipe.proteins, "g"),
-                NutritionalFactHelper(CARPOS, recipe.carbos, "g"),
+                NutritionalFactHelper(CARBOS, recipe.carbos, "g"),
                 NutritionalFactHelper(FAT, recipe.fats, "g")
             )
         )
