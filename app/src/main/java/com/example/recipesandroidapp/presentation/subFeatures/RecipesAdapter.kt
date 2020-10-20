@@ -1,13 +1,11 @@
-package com.example.recipesandroidapp.presentation.features.recipes
+package com.example.recipesandroidapp.presentation.subFeatures
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesandroidapp.R
 import com.example.recipesandroidapp.databinding.ItemRecipesGridBinding
 import com.example.recipesandroidapp.entities.InAppRecipe
+import com.example.recipesandroidapp.presentation.inflateView
 import com.example.recipesandroidapp.presentation.loadPhoto
 
 class RecipesViewHolder(val binding: ItemRecipesGridBinding) :
@@ -21,11 +19,10 @@ class RecipesViewHolder(val binding: ItemRecipesGridBinding) :
 class RecipesAdapter(
         private val items: MutableList<InAppRecipe> = mutableListOf(),
         val onClick: (InAppRecipe) -> Unit
-) : RecyclerView.Adapter< RecipesViewHolder>() {
+) : RecyclerView.Adapter<RecipesViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = LayoutInflater
-            .from(parent.context)
-            .inflate(R.layout.item_recipes_grid, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = parent
+            .inflateView(R.layout.item_recipes_grid)
             .let { ItemRecipesGridBinding.bind(it) }
             .let { RecipesViewHolder(it) }
 

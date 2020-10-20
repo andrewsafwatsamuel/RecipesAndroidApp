@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.recipesandroidapp.R
 import com.example.recipesandroidapp.entities.InAppRecipe
-import com.example.recipesandroidapp.presentation.features.recipes.RecipesAdapter
+import com.example.recipesandroidapp.presentation.subFeatures.RecipesAdapter
 import com.example.recipesandroidapp.presentation.subFeatures.SortingDialog
 import kotlinx.android.synthetic.main.fragment_search.*
 

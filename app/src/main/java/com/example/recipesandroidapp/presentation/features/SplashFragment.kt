@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.recipesandroidapp.R
-import com.example.recipesandroidapp.presentation.features.recipes.RecipesAdapter
 import java.util.*
 
 class SplashFragment : Fragment() {

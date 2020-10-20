@@ -1,6 +1,5 @@
 package com.example.recipesandroidapp.domain
 
-import androidx.lifecycle.LiveData
 import com.example.recipesandroidapp.domain.dataSources.Preferences
 import com.example.recipesandroidapp.domain.dataSources.RecipesApi
 import com.example.recipesandroidapp.domain.dataSources.SORT_PREFERENCE
